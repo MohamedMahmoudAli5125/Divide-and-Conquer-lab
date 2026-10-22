@@ -17,6 +17,14 @@ public class ArrayGenerator {
         }
         return arr;
     }
+//Used by the tests.
+    public int[] randomArray(int size, int bound) {
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = random.nextInt(bound);
+        }
+        return arr;
+    }
 
     public static void main(String[] args){
         ArrayGenerator arrayGenerator = new ArrayGenerator(12345L);

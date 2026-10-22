@@ -10,7 +10,7 @@ public class MedianOfMedians implements SelectAlgorithm {
     }
 
     private int partitionAroundValue(int[] a, int left, int right, int pivotValue) {
-        int pivotIndex = -1;
+        int pivotIndex = left;
         // fimd the pivot element
         for (int j = left; j <= right; j++) {
             if (a[j] == pivotValue) {
@@ -26,14 +26,21 @@ public class MedianOfMedians implements SelectAlgorithm {
         int pivot = a[left];
         int i = left + 1;
 
+        boolean toggle = false;// Distributes duplicates evenly to prevent O(n^2) and StackOverflow
+
+
         for (int j = left + 1; j <= right; j++) {
-            if (a[j] < pivot) {
+            if (a[j] == pivot) {
+                toggle = !toggle;
+            }
+            if (a[j] < pivot || (a[j] == pivot && toggle)) {
                 temp = a[i];
                 a[i] = a[j];
                 a[j] = temp;
                 i++;
             }
         }
+
         temp = a[left];
         a[left] = a[i - 1];
         a[i - 1] = temp;
@@ -61,7 +68,7 @@ public class MedianOfMedians implements SelectAlgorithm {
             medians[i] = getMedianOfGroup(a, groupLeft, groupRight);
         }
 
-        return selectHelper(medians, 0, numOfGroups - 1, numOfGroups / 2); // the Recursive call ( median of medians )
+        return selectHelper(medians, 0, numOfGroups - 1, (numOfGroups + 1 )/ 2); // the Recursive call ( median of medians )
     }
 
     private int selectHelper(int[] a, int left, int right, int k) {

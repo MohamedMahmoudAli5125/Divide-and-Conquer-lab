@@ -22,8 +22,14 @@ public class RandomizedSelect implements SelectAlgorithm {
         int pivot = arr[low];
         int i = low + 1;
 
+        boolean toggle = false;// Distributes duplicates evenly to prevent O(n^2) and StackOverflow
+
         for (int j = low + 1; j <= high; j++) {
-            if (arr[j] < pivot) {
+            if (arr[j] == pivot) {
+                toggle = !toggle;
+            }
+
+            if (arr[j] < pivot || (arr[j] == pivot && toggle)) {
                 // Swap arr[i] and arr[j]
                 temp = arr[i];
                 arr[i] = arr[j];
@@ -31,6 +37,7 @@ public class RandomizedSelect implements SelectAlgorithm {
                 i++;
             }
         }
+
 
         temp = arr[low];
         arr[low] = arr[i - 1];
