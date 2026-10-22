@@ -151,10 +151,10 @@ public final class MinPerimeterTriangle {
 
 
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
+        FastReader sc = new FastReader();
 
         MinPerimeterTriangle sol = new MinPerimeterTriangle();
-        while (sc.hasNextInt()) {
+        while (sc.hasNext()) {
             int n = sc.nextInt();
 
             MinPerimeterTriangle.Point[] arr = new MinPerimeterTriangle.Point[n];
