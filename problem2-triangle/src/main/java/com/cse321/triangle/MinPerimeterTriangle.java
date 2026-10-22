@@ -76,12 +76,12 @@ public final class MinPerimeterTriangle {
         for (int i = 0; i < m; i++) {
             Point firstPoint = Ydash[i];
 
-            int maxIndex = Math.min(i + limit, m);
+            int maxIndex = Math.min(i + limit, m-1);
 
-            for (int j = i + 1; j < maxIndex; j++) {
+            for (int j = i + 1; j <= maxIndex; j++) {
                 Point secondPoint = Ydash[j];
 
-                for (int k = j + 1; k < maxIndex; k++) {
+                for (int k = j + 1; k <= maxIndex; k++) {
                     Point thirdPoint = Ydash[k];
 
                     double currentPerimeter = getPerimeter(firstPoint, secondPoint, thirdPoint);
