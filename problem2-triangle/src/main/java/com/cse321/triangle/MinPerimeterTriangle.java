@@ -1,6 +1,7 @@
 package com.cse321.triangle;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Locale;
@@ -151,11 +152,13 @@ public final class MinPerimeterTriangle {
 
 
     public static void main(String[] args) throws IOException {
-        FastReader sc = new FastReader();
-
+        Reader sc = new Reader();
+        PrintWriter out = new PrintWriter(System.out);
         MinPerimeterTriangle sol = new MinPerimeterTriangle();
-        while (sc.hasNext()) {
+
+        while (true) {
             int n = sc.nextInt();
+            if (n == -1) break;
 
             MinPerimeterTriangle.Point[] arr = new MinPerimeterTriangle.Point[n];
             for (int i = 0; i < n; i++) {
@@ -166,10 +169,10 @@ public final class MinPerimeterTriangle {
 
             double minPerimeter = sol.solve(arr);
 
-            System.out.printf(Locale.US, "%.3f\n", minPerimeter);
+            out.printf(Locale.US, "%.3f\n", minPerimeter);
         }
 
-        sc.close();
+        out.flush();
     }
 
 }
